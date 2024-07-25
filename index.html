@@ -4,22 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern MQTT Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="dashboard">
         <div class="top">
-            <div class="logo">Logo</div>
+            <div class="logo"><img src="assets/images/logo.png" alt="" srcset=""></div>
             <div class="room-number">Room 101</div>
         </div>
         <div class="center">
-            <div class="temp-toggle">
-                <div id="circular-temp" class="circular-temp">25°C</div>
-                <div class="temp-controls">
-                    <button id="decrease-temp">-</button>
-                    <span id="target-temp">22°C</span>
-                    <button id="increase-temp">+</button>
-                </div>
+            <div class="slider-container">
+                <button id="decrease-btn" class="slider-btn">-</button>
+                <div id="slider"></div>
+                <button id="increase-btn" class="slider-btn">+</button>
             </div>
             <div class="status-indicators">
                 <div id="power-icon" class="status-icon">Power</div>
@@ -36,6 +34,8 @@
             <div class="date" id="date">Monday, July 24, 2024</div>
         </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.js"></script>
     <script src="scripts.js"></script>
 </body>
 </html>

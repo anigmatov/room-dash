@@ -24,12 +24,9 @@ def on_message(client, userdata, message):
     global temperature, status_info
     msg = message.payload.decode()
     with data_lock:
-        if "temperature" in msg:
-            data = json.loads(msg)
-            temperature = data.get("temperature")
-            status_info = f'POWER:{data.get("POWER")},MODE:{data.get("MODE")},FAN:{data.get("FAN")},TARGET_TEMP:{data.get("TARGET_TEMP")}'
-        else:
-            temperature = msg
+        data = json.loads(msg)
+        temperature = data.get("temperature")
+        status_info = f'POWER:{data.get("POWER")},MODE:{data.get("MODE")},FAN:{data.get("FAN")},TARGET_TEMP:{data.get("TARGET_TEMP")}'
 
 # MQTT client setup
 def start_mqtt_client():

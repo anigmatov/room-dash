@@ -37,85 +37,89 @@ function updateTimeAndDate() {
   dateElement.textContent = dateString;
 }
 
-async function fetchData() {
-  try {
-      const response = await fetch("/poll");
-      if (response.ok) {
-          const data = await response.json();
-          const temperatureElem = document.getElementById("temperatureValue");
-          const currentTempElem = document.getElementById("current-temp");
-          const statusLinesElem = document.getElementById("statusLines");
+// $("#slider").roundSlider({
+//   radius: 80,
+//   circleShape: "half-top",
+//   sliderType: "min-range",
+//   min: 16,
+//   max: 30,
+//   value: 22,
+//   showTooltip: true,
+//   handleSize: 20,
+//   handleShape: "dot",
+//   lineColor: "#0056b3",
+//   circleColor: "#0056b3",
+//   tooltipColor: "#000",
+//   tooltipBorderColor: "#0056b3",
+//   tooltipFontSize: "16px",
+//   startAngle: 180,
+//   endAngle: 360,
+//   step: 1
+// });
 
-          temperatureElem.innerText = data.temperature ? data.temperature + "°C" : "N/A";
-          currentTempElem.innerText = data.temperature ? data.temperature + "°C" : "N/A";
+// // Function to update slider value
+// function updateSliderValue(newValue) {
+//   $("#slider").roundSlider("value", newValue);
+// }
 
-          if (data.statusInfo) {
-              const statusParts = data.statusInfo.split(",");
-              let power = statusParts.find(part => part.startsWith("POWER")).split(":")[1];
-              let mode = statusParts.find(part => part.startsWith("MODE")).split(":")[1];
-              let fan = statusParts.find(part => part.startsWith("FAN")).split(":")[1];
-              let targetTemp = statusParts.find(part => part.startsWith("TARGET_TEMP")).split(":")[1];
+// // Button click handlers
+// $("#decrease-btn").on('click', function() {
+//   let currentValue = $("#slider").roundSlider("value");
+//   if (currentValue > 16) {
+//     updateSliderValue(currentValue - 1);
+//   }
+// });
 
-              let powerText = power == "1" ? "On" : "Off";
-              let modeText = mode == "1" ? "Cool" : "Heat";
-              let fanText = fan == "0" ? "Low" : fan == "1" ? "Medium" : "High";
+// $("#increase-btn").on('click', function() {
+//   let currentValue = $("#slider").roundSlider("value");
+//   if (currentValue < 30) {
+//     updateSliderValue(currentValue + 1);
+//   }
+// });
 
-              statusLinesElem.innerHTML = `
-                <div class="status-line">Power: ${powerText}</div>
-                <div class="status-line">Mode: ${modeText}</div>
-                <div class="status-line">Fan: ${fanText}</div>
-                <div class="status-line">Target Temp: ${targetTemp}°C</div>
-              `;
-          } else {
-              statusLinesElem.innerHTML = "N/A";
-          }
-      } else {
-          console.error("Failed to fetch data:", response.status);
-      }
-  } catch (error) {
-      console.error("Fetch error:", error);
+$("#slider").roundSlider({
+  radius: 80,
+  circleShape: "half-top",
+  sliderType: "min-range",
+  min: 16,
+  max: 30,
+  value: 22,
+  showTooltip: true,
+  handleSize: 20,
+  handleShape: "dot",
+  lineColor: "#0056b3",
+  circleColor: "#0056b3",
+  tooltipColor: "#000",
+  tooltipBorderColor: "#0056b3",
+  tooltipFontSize: "16px",
+  startAngle: 180,
+  endAngle: 360,
+  step: 1,
+  change: function(e) {
+      // Update the slider's value in the tooltip when it changes
+      $("#slider").roundSlider("option", "tooltipFormat", e.value + "°C");
   }
-}
-
-function toggleTemperatureUnit() {
-  const tempElement = document.getElementById('circular-temp');
-  const currentTemp = tempElement.textContent;
-  const isCelsius = currentTemp.includes('°C');
-
-  let newTemp;
-  if (isCelsius) {
-      const celsiusValue = parseFloat(currentTemp.replace('°C', ''));
-      newTemp = (celsiusValue * 9/5) + 32 + '°F';
-  } else {
-      const fahrenheitValue = parseFloat(currentTemp.replace('°F', ''));
-      newTemp = ((fahrenheitValue - 32) * 5/9).toFixed(2) + '°C';
-  }
-
-  tempElement.textContent = newTemp;
-}
-
-document.getElementById('circular-temp').addEventListener('click', toggleTemperatureUnit);
-
-document.getElementById('decrease-temp').addEventListener('click', () => {
-  const tempElement = document.getElementById('target-temp');
-  let tempValue = parseInt(tempElement.textContent);
-  tempValue -= 1;
-  tempElement.textContent = tempValue + '°C';
 });
 
-document.getElementById('increase-temp').addEventListener('click', () => {
-  const tempElement = document.getElementById('target-temp');
-  let tempValue = parseInt(tempElement.textContent);
-  tempValue += 1;
-  tempElement.textContent = tempValue + '°C';
+// Function to update slider value
+function updateSliderValue(newValue) {
+  $("#slider").roundSlider("option", "value", newValue);
+}
+
+// Button click handlers
+$("#decrease-btn").on('click', function() {
+  let currentValue = $("#slider").roundSlider("option", "value");
+  if (currentValue > 16) {
+      updateSliderValue(currentValue - 1);
+  }
 });
 
-// Fetch data every 5 seconds
-setInterval(fetchData, 5000);
-
-// Initial fetch
-fetchData();
+$("#increase-btn").on('click', function() {
+  let currentValue = $("#slider").roundSlider("option", "value");
+  if (currentValue < 30) {
+      updateSliderValue(currentValue + 1);
+  }
+});
 
 // Update time and date every second
 setInterval(updateTimeAndDate, 1000);
-updateTimeAndDate();
