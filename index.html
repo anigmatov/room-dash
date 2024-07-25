@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern MQTT Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard">
+        <div class="top">
+            <div class="logo">Logo</div>
+            <div class="room-number">Room 101</div>
+        </div>
+        <div class="center">
+            <div class="temp-toggle">
+                <div id="circular-temp" class="circular-temp">25°C</div>
+                <div class="temp-controls">
+                    <button id="decrease-temp">-</button>
+                    <span id="target-temp">22°C</span>
+                    <button id="increase-temp">+</button>
+                </div>
+            </div>
+            <div class="status-indicators">
+                <div id="power-icon" class="status-icon">Power</div>
+                <div id="mode-icon" class="status-icon">Cool</div>
+                <div id="fan-icon" class="status-icon">Fan</div>
+            </div>
+            <div class="current-status">
+                <div class="current-temp" id="current-temp">25°C</div>
+                <div class="lamp-status" id="lamp-status">Lamp: Off</div>
+            </div>
+        </div>
+        <div class="bottom">
+            <div class="time" id="time">12:00 PM</div>
+            <div class="date" id="date">Monday, July 24, 2024</div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
