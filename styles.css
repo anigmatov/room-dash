@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f0f4f8;
-  color: #333;
+  color: #eee;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,7 +14,7 @@ body {
   height: 400px;
   display: flex;
   flex-direction: column;
-  background-color: #6375ae;
+  background-color: #134B70;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -50,7 +50,7 @@ body {
 }
 
 .slider-btn {
-  background-color: #0056b3;
+  background-color: #201E43;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -61,23 +61,31 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 #slider {
   width: 160px;
   height: 160px;
+  margin: 0 25px;;
 }
-
 .status-indicators {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.rs-control .rs-tooltip  {
+  font-size: 1.5em;
+}
+
+.rs-control .rs-range-color {
+  background-color: #201E43;
 }
 
 .rs-control .rs-bg-color {
-  background-color: #6375ae;
+  background-color: #134B70;
 }
 
 .status-icon {
@@ -88,31 +96,102 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #0056b3;
-  font-size: 0.8em;
+  color: #201E43;
+  font-size: 1.5em;
   cursor: pointer;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .current-status {
+  height: 50px;
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
 .current-temp, .lamp-status {
-  width: 48%;
-  background-color: #0056b3;
+  margin: 0 30px;
+  width: 40%;
+  background-color: #201E43 ;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
   border-radius: 5px;
+  font-size: 1.2em;
 }
 
-.logo, .room-number, .time, .date {
+.current-temp i {
+  margin-right: 5px;
+}
+
+.lamp-status i{
+  margin-right: 5px;
+  font-size: 1.5em;
+}
+
+.lamp-status.on{
+  font-weight: bold;
+  color: yellow;
+}
+
+.logo, .room-number, .time, .date, .wi-fi {
   padding: 10px;
-  background-color: #e0e0e0;
+  background-color: #3a74a3;
   border-radius: 5px;
+}
+
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 10; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4); /* Black with opacity */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.popup h2, p{
+  font-size: 14px;
+  margin: 5px;
+}
+
+.popup-content {
+  background-color: #3a74a3;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 250px; /* Fixed width */
+  height: 250px; /* Fixed height */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.close {
+  color: #aaa;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.qr-code img {
+  width: 150px; /* Adjust size as needed */
+  height: 150px; /* Adjust size as needed */
+  margin: 5px;
 }
