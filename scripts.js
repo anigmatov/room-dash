@@ -172,11 +172,21 @@ function updateTimeAndDate() {
 // Call updateTimeAndDate every second
 setInterval(updateTimeAndDate, 1000);
 
-// Wi-Fi popup functionality
-document.querySelector(".wifi").addEventListener("click", function() {
-  document.getElementById("wifi-popup").style.display = "block";
-});
+$(document).ready(function() {
+  // Open the popup when the "WI FI" div is clicked
+  $('.popup-wifi').on('click', function() {
+      $('#wifi-popup').css('display', 'flex'); // Show the popup
+  });
 
-document.querySelector(".popup .close").addEventListener("click", function() {
-  document.getElementById("wifi-popup").style.display = "none";
+  // Close the popup when the "x" span is clicked
+  $('.close').on('click', function() {
+      $('#wifi-popup').css('display', 'none'); // Hide the popup
+  });
+
+  // Close the popup when clicking outside of the popup content
+  $(window).on('click', function(event) {
+      if ($(event.target).is('#wifi-popup')) {
+          $('#wifi-popup').css('display', 'none'); // Hide the popup
+      }
+  });
 });
