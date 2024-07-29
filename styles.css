@@ -1,3 +1,7 @@
+button{
+  border: none;
+}
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -137,7 +141,7 @@ body {
   color: yellow;
 }
 
-.logo, .room-number, .time, .date, .wi-fi {
+.logo, .room-number, .time, .date, .wifi {
   padding: 10px;
   background-color: #3a74a3;
   border-radius: 5px;

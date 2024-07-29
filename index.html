@@ -11,49 +11,49 @@
 <body>
     <div class="dashboard">
         <div class="top">
-            <div class="logo"><img src="assets/images/logo.png" alt=""></div>
+            <div class="logo"><img src="assets/images/logo.png" alt="Logo" onclick="window.location.reload();"></div>
             <div class="room-number">3 Qavat - 11 Xona</div>
         </div>
         <div class="center">
             <div class="slider-container">
-                <button id="decrease-btn" class="slider-btn">-</button>
+                <button id="decrease-btn" class="slider-btn"><i class="fas fa-minus"></i></button>
                 <div id="slider"></div>
-                <button id="increase-btn" class="slider-btn">+</button>
+                <button id="increase-btn" class="slider-btn"><i class="fas fa-plus"></i></button>
             </div>
             <div class="status-indicators">
-                <div id="power-icon" class="status-icon"><i class="fa-solid fa-toggle-off"></i></div>
-                <div id="mode-icon" class="status-icon"><i class="fas fa-snowflake"></i></div>
-                <div id="fan-icon" class="status-icon"><i class="fa-solid fa-battery-quarter"></i></div>
+                <button id="power-icon" class="status-icon"><i class="fa-solid fa-toggle-off"></i></button>
+                <button id="mode-icon" class="status-icon"><i class="fas fa-snowflake"></i></button>
+                <button id="fan-icon" class="status-icon"><i class="fa-solid fa-battery-quarter"></i></button>
             </div>
             <div class="current-status">
-                <div class="current-temp" id="current-temp"><i class="fas fa-thermometer-half"></i> 25°C</div>
-                <div class="lamp-status" id="lamp-status"><i class="fas fa-lightbulb"></i> Off</div>
-            </div>            
+                <div class="current-temp" id="current-temp"><i class="fas fa-thermometer-half"></i> #</div>
+                <button class="lamp-status" id="lamp-status"><i class="fas fa-lightbulb"></i> Off</button>
+            </div>
         </div>
         <div class="bottom">
             <div class="time" id="time">12:00 PM</div>
-            <div class="wi-fi popup-wifi">WI FI</div>
+            <div class="wifi popup-wifi">WI FI</div>
             <div class="date" id="date">Monday, July 24, 2024</div>
         </div>
 
-
-        
-            <!-- Wi-Fi Popup -->
-            <div id="wifi-popup" class="popup">
-                <div class="popup-content">
-                    <span class="close">&times;</span>
-                    <h2>Wi-Fi Information</h2>
-                    <div class="qr-code">
-                        <img src="assets/images/wi-fi.png" alt="QR Code">
-                    </div>
-                    <p><strong>SSID:</strong> VIP</p>
-                    <p><strong>Password:</strong> <u>Bulka@!1234#2023</u></p>
+        <!-- Wi-Fi Popup -->
+        <div id="wifi-popup" class="popup">
+            <div class="popup-content">
+                <span class="close">&times;</span>
+                <h2>Wi-Fi Information</h2>
+                <div class="qr-code">
+                    <img src="assets/images/wi-fi.png" alt="QR Code">
                 </div>
+                <p><strong>SSID:</strong> VIP</p>
+                <p><strong>Password:</strong> <u>Bulka@!1234#2023</u></p>
             </div>
-
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/paho-mqtt@1.1.0/paho-mqtt.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/round-slider@1.6.1/dist/roundslider.min.js"></script>
     <script src="scripts.js"></script>
+    
 </body>
 </html>
