@@ -1,5 +1,12 @@
+/* Reset margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+}
+
 button{
   border: none;
+  cursor: pointer;
 }
 
 body {
@@ -14,13 +21,13 @@ body {
 }
 
 .dashboard {
-  width: 400px;
-  height: 400px;
+  width: 100vw; /* Full width */
+  height: 100vh; /* Full height */
   display: flex;
   flex-direction: column;
   background-color: #134B70;
-  border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Prevents scrollbars */
 }
 
 .top, .bottom {
@@ -31,11 +38,11 @@ body {
 }
 
 .top {
-  height: 50px;
+  height: 10%; /* Adjust based on content */
 }
 
 .bottom {
-  height: 50px;
+  height: 10%; /* Adjust based on content */
 }
 
 .center {
@@ -50,7 +57,7 @@ body {
 .slider-container {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
 .slider-btn {
@@ -58,9 +65,9 @@ body {
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 30px;
-  height: 30px;
-  font-size: 20px;
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
   cursor: pointer;
   display: flex;
   justify-content: center;
@@ -71,17 +78,18 @@ body {
 #slider {
   width: 160px;
   height: 160px;
-  margin: 0 25px;;
+  margin: 0 25px;
 }
+
 .status-indicators {
   display: flex;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
 }
 
-.rs-control .rs-tooltip  {
-  font-size: 1.5em;
+.rs-control .rs-tooltip {
+  font-size: 3em;
 }
 
 .rs-control .rs-range-color {
@@ -93,22 +101,22 @@ body {
 }
 
 .status-icon {
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   background-color: #e9f5ff;
   border-radius: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #201E43;
-  font-size: 1.5em;
+  font-size: 2.5em;
   cursor: pointer;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.3s, color 0.3s;
 }
 
 .current-status {
-  height: 50px;
+  font-size: 2em;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -117,7 +125,7 @@ body {
 .current-temp, .lamp-status {
   margin: 0 30px;
   width: 40%;
-  background-color: #201E43 ;
+  background-color: #201E43;
   color: #fff;
   display: flex;
   justify-content: center;
@@ -131,20 +139,21 @@ body {
   margin-right: 5px;
 }
 
-.lamp-status i{
+.lamp-status i {
   margin-right: 5px;
   font-size: 1.5em;
 }
 
-.lamp-status.on{
+.lamp-status.on {
   font-weight: bold;
   color: yellow;
 }
 
 .logo, .room-number, .time, .date, .wifi {
-  padding: 10px;
+  padding: 15px;
   background-color: #3a74a3;
   border-radius: 5px;
+  font-size: 1.5em;
 }
 
 .popup {
@@ -161,17 +170,18 @@ body {
   align-items: center; /* Center vertically */
 }
 
-.popup h2, p{
-  font-size: 14px;
-  margin: 5px;
+.popup h2, p {
+  color: #201E43;
+  font-size: 28px;
+  margin: 15px;
 }
 
 .popup-content {
-  background-color: #3a74a3;
+  background-color: #b3c4d2;
   padding: 20px;
   border: 1px solid #888;
-  width: 250px; /* Fixed width */
-  height: 250px; /* Fixed height */
+  width: 500px; /* Fixed width */
+  height: 500px; /* Fixed height */
   border-radius: 10px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -195,7 +205,7 @@ body {
 }
 
 .qr-code img {
-  width: 150px; /* Adjust size as needed */
-  height: 150px; /* Adjust size as needed */
+  width: 300px; /* Adjust size as needed */
+  height: 300px; /* Adjust size as needed */
   margin: 5px;
 }

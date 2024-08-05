@@ -4,26 +4,26 @@ function sendGetRequest(endpoint, value) {
   const lampId = "1";
   let url;
 
-  switch(endpoint) {
-      case 'power':
-          url = `http://172.25.25.20/api/switch_cond3/cond2_status/${deviceId}/${value}`;
-          break;
-      case 'mode':
-          url = `http://172.25.25.20/api/switch_cond3/cond2_mode/${deviceId}/${value}`;
-          break;
-      case 'fan':
-          url = `http://172.25.25.20/api/switch_cond3/cond2_fan/${deviceId}/${value}`;
-          break;
-      case 'temperature':
-          url = `http://172.25.25.20/api/switch_cond3/cond2_settemp/${deviceId}/${value}`;
-          break;
-      case 'lamp':
-          url = `http://172.25.25.20/api/switch_light/${lampId}/${value}`;
-          break;
-      default:
-          console.error('Unknown endpoint:', endpoint);
-          return;
-  }
+  // switch(endpoint) {
+  //     case 'power':
+  //         url = `http://172.25.25.20/api/switch_cond3/cond2_status/${deviceId}/${value}`;
+  //         break;
+  //     case 'mode':
+  //         url = `http://172.25.25.20/api/switch_cond3/cond2_mode/${deviceId}/${value}`;
+  //         break;
+  //     case 'fan':
+  //         url = `http://172.25.25.20/api/switch_cond3/cond2_fan/${deviceId}/${value}`;
+  //         break;
+  //     case 'temperature':
+  //         url = `http://172.25.25.20/api/switch_cond3/cond2_settemp/${deviceId}/${value}`;
+  //         break;
+  //     case 'lamp':
+  //         url = `http://172.25.25.20/api/switch_light/${lampId}/${value}`;
+  //         break;
+  //     default:
+  //         console.log('Unknown endpoint:', endpoint);
+  //         return;
+  // }
 
   fetch(url, {
       method: 'GET',
@@ -36,20 +36,21 @@ function sendGetRequest(endpoint, value) {
       console.log(`GET request to ${endpoint} successful:`, data);
   })
   .catch(error => {
-      console.error('Error with GET request:', error);
+      console.log('Error with GET request:', error);
   });
 }
 
 // Initialize the round slider
 $("#slider").roundSlider({
-  radius: 80,
+  radius: 150,
+  width: 35,
   circleShape: "half-top",
   sliderType: "min-range",
   min: 16,
   max: 30,
   value: 22,
   showTooltip: true,
-  handleSize: 20,
+  handleSize: 35,
   handleShape: "dot",
   lineColor: "#0056b3",
   circleColor: "#0056b3",
@@ -104,7 +105,7 @@ $("#fan-icon").on('click', function() {
   let nextMode = modes[nextIndex];
   
   $(this).data('mode', nextMode);
-  $(this).html(nextMode === 'AUTO' ? '<i class="fa-solid fa-battery-full"></i>' : 
+  $(this).html(nextMode === 'AUTO' ? '<i class="fa-solid fa-a"></i>' : 
                             nextMode === 'LOW' ? '<i class="fa-solid fa-battery-quarter"></i>' : 
                             nextMode === 'MEDIUM' ? '<i class="fa-solid fa-battery-three-quarters"></i>' : 
                             '<i class="fa-solid fa-battery-full"></i>');
@@ -190,3 +191,4 @@ $(document).ready(function() {
       }
   });
 });
+
