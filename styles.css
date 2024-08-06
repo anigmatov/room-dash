@@ -120,41 +120,8 @@ body {
   to { transform: rotate(360deg); }
 }
 
-.fan-mode {
-  display: inline-block;
-}
-
-.fan-mode.low {
-  animation: spin-low 2s linear infinite;
-}
-
-.fan-mode.medium {
-  animation: spin-medium 1s linear infinite;
-}
-
-.fan-mode.high {
-  animation: spin-high 0.5s linear infinite;
-}
-
-.fan-mode.auto {
-  /* No animation for AUTO mode, display "AUTO" */
-  animation: none;
-}
-
-/* Smooth continuous rotation */
-@keyframes spin-low {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes spin-medium {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes spin-high {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.fan-iconcha{
+  font-size: 1.3em;
 }
 
 .current-status {

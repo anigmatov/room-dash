@@ -105,19 +105,19 @@ $("#fan-icon").on('click', function() {
   let nextMode = modes[nextIndex];
   
   $(this).data('mode', nextMode);
-  const fanIcon = $(this).find('.fa-fan');
-  
-  if (nextMode === 'AUTO') {
-      fanIcon.removeClass('low medium high');
-      fanIcon.css('animation', 'none');
-      $(this).html('<p><b>AUTO</b></p>');
-  } else {
-      fanIcon.removeClass('auto').addClass(nextMode.toLowerCase());
-      $(this).html(`<i class="fa-solid fa-fan fan-mode ${nextMode.toLowerCase()}"></i>`);
-  }
+
+  const iconMap = {
+      'AUTO': 'mdi:fan-auto',
+      'LOW': 'mdi:fan-speed-1',
+      'MEDIUM': 'mdi:fan-speed-2',
+      'HIGH': 'mdi:fan-speed-3'
+  };
+
+  $(this).find('iconify-icon').attr('icon', iconMap[nextMode]);
   
   sendGetRequest('fan', nextMode);
 });
+
 
 $("#lamp-status").on('click', function() {
   let isOn = $(this).text().includes("On");
