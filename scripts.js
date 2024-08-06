@@ -4,26 +4,26 @@ function sendGetRequest(endpoint, value) {
   const lampId = "1";
   let url;
 
-  // switch(endpoint) {
-  //     case 'power':
-  //         url = `http://172.25.25.20/api/switch_cond3/cond2_status/${deviceId}/${value}`;
-  //         break;
-  //     case 'mode':
-  //         url = `http://172.25.25.20/api/switch_cond3/cond2_mode/${deviceId}/${value}`;
-  //         break;
-  //     case 'fan':
-  //         url = `http://172.25.25.20/api/switch_cond3/cond2_fan/${deviceId}/${value}`;
-  //         break;
-  //     case 'temperature':
-  //         url = `http://172.25.25.20/api/switch_cond3/cond2_settemp/${deviceId}/${value}`;
-  //         break;
-  //     case 'lamp':
-  //         url = `http://172.25.25.20/api/switch_light/${lampId}/${value}`;
-  //         break;
-  //     default:
-  //         console.log('Unknown endpoint:', endpoint);
-  //         return;
-  // }
+  switch(endpoint) {
+      case 'power':
+          url = `http://172.25.25.20/api/switch_cond3/cond2_status/${deviceId}/${value}`;
+          break;
+      case 'mode':
+          url = `http://172.25.25.20/api/switch_cond3/cond2_mode/${deviceId}/${value}`;
+          break;
+      case 'fan':
+          url = `http://172.25.25.20/api/switch_cond3/cond2_fan/${deviceId}/${value}`;
+          break;
+      case 'temperature':
+          url = `http://172.25.25.20/api/switch_cond3/cond2_settemp/${deviceId}/${value}`;
+          break;
+      case 'lamp':
+          url = `http://172.25.25.20/api/switch_light/${lampId}/${value}`;
+          break;
+      default:
+          console.log('Unknown endpoint:', endpoint);
+          return;
+  }
 
   fetch(url, {
       method: 'GET',
@@ -98,17 +98,23 @@ $("#mode-icon").on('click', function() {
 });
 
 $("#fan-icon").on('click', function() {
-  let modes = ['AUTO', 'LOW', 'MEDIUM', 'HIGH'];
+  const modes = ['AUTO', 'LOW', 'MEDIUM', 'HIGH'];
   let currentMode = $(this).data('mode') || 'AUTO';
   let currentIndex = modes.indexOf(currentMode);
   let nextIndex = (currentIndex + 1) % modes.length;
   let nextMode = modes[nextIndex];
   
   $(this).data('mode', nextMode);
-  $(this).html(nextMode === 'AUTO' ? '<i class="fa-solid fa-a"></i>' : 
-                            nextMode === 'LOW' ? '<i class="fa-solid fa-battery-quarter"></i>' : 
-                            nextMode === 'MEDIUM' ? '<i class="fa-solid fa-battery-three-quarters"></i>' : 
-                            '<i class="fa-solid fa-battery-full"></i>');
+  const fanIcon = $(this).find('.fa-fan');
+  
+  if (nextMode === 'AUTO') {
+      fanIcon.removeClass('low medium high');
+      fanIcon.css('animation', 'none');
+      $(this).html('<p><b>AUTO</b></p>');
+  } else {
+      fanIcon.removeClass('auto').addClass(nextMode.toLowerCase());
+      $(this).html(`<i class="fa-solid fa-fan fan-mode ${nextMode.toLowerCase()}"></i>`);
+  }
   
   sendGetRequest('fan', nextMode);
 });
@@ -125,7 +131,7 @@ function updateSliderValue(newValue) {
   sendGetRequest('temperature', newValue);
 }
 
-const ws = new WebSocket('ws://localhost:8080');
+const ws = new WebSocket('ws://172.25.24.163:8080');
 
 ws.onmessage = function (event) {
   document.getElementById('current-temp').innerText = `${event.data} °C`;
@@ -189,6 +195,12 @@ $(document).ready(function() {
       if ($(event.target).is('#wifi-popup')) {
           $('#wifi-popup').css('display', 'none'); // Hide the popup
       }
+
+    setTimeout(function() {
+      $('#wifi-popup').css('display', 'none'); // Hide the popup
+    }, 10000); // 10 seconds
   });
+
+
 });
 
